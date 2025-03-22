@@ -60,3 +60,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    let imgSlider = document.getElementById("img-slider");
+    let imgButtons = document.querySelectorAll(".img-btn");
+    let images = ["Catarman.png", "Mahinog.png", "Sagay.png", "Mambajao.png"];
+    let currentIndex = 0;
+
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length; // Loop through images
+        imgSlider.src = images[currentIndex];
+
+        // Update active class
+        imgButtons.forEach(btn => btn.classList.remove("active"));
+        imgButtons[currentIndex].classList.add("active");
+    }
+
+    setInterval(changeImage, 3000); // Change image every 3 seconds
+
+    // Allow manual switching
+    imgButtons.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+            currentIndex = index;
+            imgSlider.src = images[currentIndex];
+
+            imgButtons.forEach(btn => btn.classList.remove("active"));
+            btn.classList.add("active");
+        });
+    });
+});
+
+
+
